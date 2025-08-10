@@ -14,7 +14,7 @@ public class GreetingController {
     // http://localhost:8080/greeting?name=qualque1
     @RequestMapping("/greeting") //para ser reconhecido como um metodo exposto via http
     public Greeting greeting(
-            //Definindo requestparams
+            //Definindo requestparams -> url params
             @RequestParam(value = "name", defaultValue = "world")
             String name)
     {
