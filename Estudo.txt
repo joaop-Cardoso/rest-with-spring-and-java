@@ -1,0 +1,18 @@
+Annotations são comandos diretos para o compilador da JVM
+
+<> --> quando o parâmetro passado é um tipo e não um valor ou variável 
+
+Estudar MVC
+ve se o Spring Boot usa o MVC como um padrão/se é padrão utilizá-lo assim como convenção
+
+v @RestController = expor um método ou classe para ser capturado/a pelo protocolo http
+
+v @RestMapping = mapear paths para métodos ou classes
+
+! @PathVariable = filho? de RestMapping para transformar variáveis em código em variáveis de path uris
+
+!! @ResponseStatus = Seta uma classe de exception para ser disparada? quando há determinado código de status?
+
+
+
+ResponseEntity<T> classe do Spring Boot que é uma extensão da classe HttpEntity<T> com add de status code. HttpEntity representa uma requisição http com header e body, precisando-se especificar o tipo (outra classe) dentro de <>
