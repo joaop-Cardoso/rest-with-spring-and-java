@@ -1,5 +1,6 @@
 package com.joaop_Cardoso.controllers;
 
+import com.joaop_Cardoso.exception.UnsupportedMathOperatorException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +13,9 @@ public class MathController {
     @RequestMapping("/sum/{number1}/{number2}")
     public Double sum(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
     {   
-        if(!isNumeric(number1) || isNumeric(number2))
+        if(!(isNumeric(number1) || isNumeric(number2)))
         {
-            throw new IllegalArgumentException();
+            throw new UnsupportedMathOperatorException("Not number");
         }
         return convertToDouble(number1) + convertToDouble(number2);
     }
@@ -22,7 +23,7 @@ public class MathController {
     private Double convertToDouble(String strNumber) throws Exception
     {
         if(strNumber == null || strNumber.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new UnsupportedMathOperatorException("Not number");
         }
         return Double.parseDouble(strNumber);
     }
