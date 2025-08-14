@@ -12,10 +12,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Date;
 
-@ControllerAdvice
+@ControllerAdvice //permite definir alguns métodos comuns para vários controllers
 @RestController
 public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler
-//a class with @ExceptionHandler    ~~ response with formatted error details in the body
 {
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request)
@@ -28,7 +27,7 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }//metodo para tratar exceções genericas
 
-    @ExceptionHandler(UnsupportedMathOperatorException.class)
+    @ExceptionHandler(UnsupportedMathOperatorException.class) //responsável por definir um tratamento para exceções específicas
     public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request)
     {
         ExceptionResponse response = new ExceptionResponse(
@@ -36,6 +35,9 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler
                 ex.getMessage(),
                 request. getDescription(false)
         );
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        // como o ResponseEntity está sendo do tipo ExceptionResponse, o objeto ResponseEntity irá retornar todos os atritutos
+        // do tipo ExceptionResponse em json
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST); //objeto de resposta, responseentity, retorna json
     }//metodo para tratar exceções genericas
 }
