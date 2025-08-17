@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
+import static com.joaop_Cardoso.services.ControllerValidations.*;
+
 @RestController
 @RequestMapping("/math")
 public class MathController {
@@ -17,30 +19,48 @@ public class MathController {
     @RequestMapping("/sum/{number1}/{number2}")
     public Double sum(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
     {
-
-        if(!(isNumeric(number1) && isNumeric(number2)))
-        {
-            throw new UnsupportedMathOperatorException("Not number");
-        }
+        numberValidation(number1);
+        numberValidation(number2);
         return convertToDouble(number1) + convertToDouble(number2);
     }
 
-    private Double convertToDouble(String strNumber) throws Exception
+    @RequestMapping("/subtraction/{number1}/{number2}")
+    public Double subtraction(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
     {
-        if(strNumber == null || strNumber.isEmpty()) {
-            throw new UnsupportedMathOperatorException("Not number");
-        }
-        return Double.parseDouble(strNumber);
+        numberValidation(number1);
+        numberValidation(number2);
+        return convertToDouble(number1) - convertToDouble(number2);
     }
 
-
-    private boolean isNumeric(String strNumber) {
-        if(strNumber == null || strNumber.isEmpty()) {
-            return false;
-        }
-        String number = strNumber.replace(",", ".");
-        return number.matches("[-+]?[0-9]*\\.?[0-9]+");
+    @RequestMapping("/multiplication/{number1}/{number2}")
+    public Double multiplication(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
+    {
+        numberValidation(number1);
+        numberValidation(number2);
+        return convertToDouble(number1) * convertToDouble(number2);
     }
 
+    @RequestMapping("/division/{number1}/{number2}")
+    public Double division(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
+    {
+        numberValidation(number1);
+        numberValidation(number2);
+        return convertToDouble(number1) / convertToDouble(number2);
+    }
+
+    @RequestMapping("/average/{number1}/{number2}")
+    public Double average(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
+    {
+        numberValidation(number1);
+        numberValidation(number2);
+        return (convertToDouble(number1) + convertToDouble(number2))/2;
+    }
+
+    @RequestMapping("/squareroot/{number1}")
+    public Double squareroot(@PathVariable("number1") String number1) throws Exception
+    {
+        numberValidation(number1);
+        return Math.sqrt(convertToDouble(number1));
+    }
 
 }
