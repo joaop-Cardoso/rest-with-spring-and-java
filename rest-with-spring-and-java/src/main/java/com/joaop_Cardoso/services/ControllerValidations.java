@@ -11,6 +11,13 @@ public abstract class ControllerValidations {
        }
        return true;
    }
+    public static boolean numberValidation(String strNumber1, String strNumber2) throws Exception{
+        if(!(isNumeric(strNumber1) && isNumeric(strNumber2)))
+        {
+            throw new UnsupportedMathOperatorException("Not number");
+        }
+        return true;
+    }
 
     private static boolean isNumeric(String strNumber) {
         if(strNumber == null || strNumber.isEmpty()) {

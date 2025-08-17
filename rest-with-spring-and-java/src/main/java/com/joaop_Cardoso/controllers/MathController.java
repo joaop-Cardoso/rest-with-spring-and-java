@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
+import static com.joaop_Cardoso.Math.SimpleOperations.*;
 import static com.joaop_Cardoso.services.ControllerValidations.*;
 
 @RestController
@@ -19,48 +20,43 @@ public class MathController {
     @RequestMapping("/sum/{number1}/{number2}")
     public Double sum(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
     {
-        numberValidation(number1);
-        numberValidation(number2);
-        return convertToDouble(number1) + convertToDouble(number2);
+        numberValidation(number1,number2);
+        return sumOperation(number1,number2);
     }
 
     @RequestMapping("/subtraction/{number1}/{number2}")
     public Double subtraction(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
     {
-        numberValidation(number1);
-        numberValidation(number2);
-        return convertToDouble(number1) - convertToDouble(number2);
+        numberValidation(number1,number2);
+        return subtractionOperation(number1,number2);
     }
 
     @RequestMapping("/multiplication/{number1}/{number2}")
     public Double multiplication(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
     {
-        numberValidation(number1);
-        numberValidation(number2);
-        return convertToDouble(number1) * convertToDouble(number2);
+        numberValidation(number1,number2);
+        return multiplicationOperation(number1,number2);
     }
 
     @RequestMapping("/division/{number1}/{number2}")
     public Double division(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
     {
-        numberValidation(number1);
-        numberValidation(number2);
-        return convertToDouble(number1) / convertToDouble(number2);
+        numberValidation(number1,number2);
+        return divisionOperation(number1,number2);
     }
 
     @RequestMapping("/average/{number1}/{number2}")
     public Double average(@PathVariable("number1") String number1, @PathVariable("number2")String number2) throws Exception
     {
-        numberValidation(number1);
-        numberValidation(number2);
-        return (convertToDouble(number1) + convertToDouble(number2))/2;
+        numberValidation(number1,number2);
+        return averageOperation(number1, number2);
     }
 
-    @RequestMapping("/squareroot/{number1}")
-    public Double squareroot(@PathVariable("number1") String number1) throws Exception
+    @RequestMapping("/squareroot/{number}")
+    public Double squareroot(@PathVariable("number") String number) throws Exception
     {
-        numberValidation(number1);
-        return Math.sqrt(convertToDouble(number1));
+        numberValidation(number);
+        return squareRootOperation(number);
     }
 
 }
