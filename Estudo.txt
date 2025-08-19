@@ -7,7 +7,7 @@ ve se o Spring Boot usa o MVC como um padrão/se é padrão utilizá-lo assim co
 
 v @RestController = expor um método ou classe para ser capturado/a pelo protocolo http
 
-v @RestMapping = mapear paths para métodos ou classes
+v @RequestMapping = mapear paths para métodos ou classes
 
 ! @PathVariable = filho? de RestMapping para transformar variáveis em código em variáveis de path uris
 
@@ -16,3 +16,25 @@ v @RestMapping = mapear paths para métodos ou classes
 
 
 ResponseEntity<T> classe do Spring Boot que é uma extensão da classe HttpEntity<T> com add de status code. HttpEntity representa uma requisição http com header e body, precisando-se especificar o tipo (outra classe) dentro de <>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Injeção de dependência 
+inversão de controle
+
+@Autowired
+@Service
+
+
+alto acomplamento classe = se troca uma parte, preciso alterar algo na outra também
+baixo acomplamento resolve esse problema via interfaces, injeção de dependencia, eventos, etc.
+
+
+A Injeção de dependência acontece através do polimorfismo no instanciamento da parte pretendida
+no construtor da parte dependente --- É como ter diferentes peças pretendidas e você usar qual quiser
+no engate do dependente(construtor), ao invés de não ter um engate no dependente e você precisasse soldar
+e dessoldar sempre que fosse trocar 
+
+bean é simplesmente um objeto Java que o Spring cria, inicializa e gerencia para você
+Qualquer classe anotada com @Component, @Service, @Repository, @Controller 
+(ou registrada manualmente) vira um bean.
