@@ -38,3 +38,7 @@ e dessoldar sempre que fosse trocar
 bean é simplesmente um objeto Java que o Spring cria, inicializa e gerencia para você
 Qualquer classe anotada com @Component, @Service, @Repository, @Controller 
 (ou registrada manualmente) vira um bean.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+@RequestBody em parametro de metodo POST
